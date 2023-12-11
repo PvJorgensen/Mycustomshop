@@ -30,7 +30,7 @@ router.post('/products', async (req, res) => {
 });
 
 //Update record
-router.put('products', async (req, res) => {
+router.put('/products', async (req, res) => {
     try {
         const result = await controller.update(req.body);
         res.send({
