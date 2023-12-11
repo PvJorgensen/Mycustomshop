@@ -1,27 +1,27 @@
 import express from 'express';
-import  CategoryController  from '../Controllers/category.controller.js';
-const controller = new CategoryController();
+import  ProductController  from '../Controllers/product.controller.js';
+const controller = new ProductController();
 const router = express.Router(); 
 
 
 //Get list of all records
-router.get('/categories', async (req, res) => {
+router.get('/products', async (req, res) => {
     const result = await controller.listall()
     res.json(result)
 });
 
 //Get a single category by id (getone)
-router.get('/categories/:id([0-9*])', async (req, res) => {
+router.get('/products/:id([0-9*])', async (req, res) => {
     const result = await controller.getone(req.params.id)
     res.json(result);
 });
 
 //Create a new record
-router.post('/categories', async (req, res) => {
+router.post('/products', async (req, res) => {
     try {
         const result = await controller.create(req.body);
         res.send({
-            message: 'Category created successfully',
+            message: 'Product created successfully',
             newId: result.id
         })
     } catch (error) {
@@ -30,11 +30,11 @@ router.post('/categories', async (req, res) => {
 });
 
 //Update record
-router.put('/categories', async (req, res) => {
+router.put('products', async (req, res) => {
     try {
         const result = await controller.update(req.body);
         res.send({
-            message: 'Category updated successfully',
+            message: 'Product updated successfully',
         })
     } catch (error) {
         res.send(error.message)
@@ -42,11 +42,11 @@ router.put('/categories', async (req, res) => {
 });
 
 //Delete a record by id
-router.delete('/categories/:id([0-9*])', async (req, res) => {
+router.delete('/products/:id([0-9*])', async (req, res) => {
     try {
         await controller.delete(req.params.id);
         res.send({
-            message: 'Category deleted successfully'
+            message: 'Product deleted successfully'
         })
     } catch (error) {
         res.send(error.message)
@@ -54,4 +54,4 @@ router.delete('/categories/:id([0-9*])', async (req, res) => {
 });
 
 
-export { router as CategoryRouter}
+export { router as ProductRouter }
